@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Confirmar } from '../../interfaces/portal.interface';
 
 @Component({
   selector: 'app-comprobante',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comprobante.component.css']
 })
 export class ComprobanteComponent implements OnInit {
+  @Input() dataConfirmar: Confirmar[] =[];
+  today = new Date().toLocaleDateString();
 
   constructor() { }
 

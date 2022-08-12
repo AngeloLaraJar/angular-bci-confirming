@@ -1,0 +1,38 @@
+<p>Comprobante de anticipo</p>
+
+<div class="box-container">
+  <div class="box wk-padding-all-32">
+
+    <div class="wk-row" style="padding: 20px; background-color: #d4e7d580;">
+      <div class="wk-col-xs-3 wk-col-md-3 wk-col-lg-3">
+        <i class="material-icons icon-comprobante">check_circle e86c</i>
+      </div>
+      <div class="wk-col-xs-6 wk-col-md-6 wk-col-lg-6">
+        <div class="wk-row">
+          <div class="wk-col-xs-6 wk-col-md-6 wk-col-lg-6">
+            <p>Comprobante</p>
+            <p>Fecha</p>
+            <p *ngFor="let item of dataConfirmar">
+              <span *ngIf="item.title !== 'Monto final Anticipar'">{{item.title}}</span><br>
+              <span style="margin-top: 20px;font-weight: bold;" *ngIf="item.title === 'Monto final Anticipar'">{{item.title}}</span>
+            </p>
+          </div>
+          <div class="wk-col-xs-6 wk-col-md-6 wk-col-lg-6" >
+            <p style="font-weight: bold">8927387243</p>
+            <p style="font-weight: bold">{{today}}</p>
+            
+            <p *ngFor="let item of dataConfirmar" style="font-weight: bold">
+              <span *ngIf="item.title === 'Tasa de descuento'">%</span>
+              <span *ngIf="item.title !== 'Tasa de descuento' && item.title !== 'Medio de pago' && item.title !== 'Monto final Anticipar'">$</span>
+              <span *ngIf="item.title !== 'Monto final Anticipar'">{{item.valor}}</span><br>
+              <span style="margin-top: 20px;font-weight: bold;" *ngIf="item.title === 'Monto final Anticipar'">{{item.valor | currency}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="wk-col-xs-3 wk-col-md-3 wk-col-lg-3"></div>
+    </div>
+
+
+  </div>
+</div>

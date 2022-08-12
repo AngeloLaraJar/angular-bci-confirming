@@ -1,0 +1,9 @@
+.icon-comprobante {
+    display: flex;
+    flex-direction: row;
+    font-size: 200px;
+    justify-content: space-between;
+    margin-left: 40px;
+    margin-top: 40px;
+    color: #28892b;
+}

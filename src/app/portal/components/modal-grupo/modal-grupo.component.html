@@ -1,0 +1,111 @@
+<bci-wk-modal>
+    <bci-wk-modal-title bciWkTypeH1000 class="align-center">Detalle grupo</bci-wk-modal-title>
+    <form [formGroup]="formDetalle">
+        <div class="box-container">
+            <div class="box wk-padding-all-32">
+                <div class="wk-row">
+                    <div class="wk-col-xs-6 wk-col-md-6 wk-col-lg-6">
+                        <bci-wk-input-text
+                            [placeholder]="'Pagador'"
+                            formControlName="pagador"
+                            [label]=data.pagador>
+                        </bci-wk-input-text>
+                    </div>
+
+                    <div class="wk-col-xs-6 wk-col-md-6 wk-col-lg-6">
+                        <bci-wk-input-text
+                            [placeholder]="'Rut pagador'"
+                            formControlName="rut_pagador"
+                            [label]=data.rut_pagador>
+                        </bci-wk-input-text>
+                    </div>
+
+                    <div class="wk-col-xs-4 wk-col-md-4 wk-col-lg-4">
+                        <bci-wk-input-number
+                            [placeholder]=data.nomina!
+                            formControlName="nomina"
+                            label="Nómina">
+                        </bci-wk-input-number>
+                    </div>
+
+                    <div class="wk-col-xs-4 wk-col-md-4 wk-col-lg-4">
+                        <bci-wk-input-number
+                            [placeholder]=data.grupo
+                            formControlName="grupo"
+                            label="Grupo">
+                        </bci-wk-input-number>
+                    </div>
+
+                    <div class="wk-col-xs-4 wk-col-md-4 wk-col-lg-4">
+                        <bci-wk-input-text
+                            [placeholder]="'Fecha de pago'"
+                            formControlName="fecha_pago"
+                            [label]="data.fecha_pago_original">
+                        </bci-wk-input-text>
+                    </div>
+                    <div class="wk-col-xs-4 wk-col-md-4 wk-col-lg-4">
+                        <bci-wk-input-money 
+                            [placeholder]="data.monto_original"
+                            formControlName="monto_original"
+                            label="Monto original">
+                        </bci-wk-input-money >
+                    </div>
+
+                    <div class="wk-col-xs-4 wk-col-md-4 wk-col-lg-4">
+                        <bci-wk-input-money 
+                            [placeholder]="data.saldo_disponible"
+                            formControlName="saldo_disponible"
+                            label="Saldo disponible">
+                        </bci-wk-input-money >
+                    </div>
+
+                    <div class="wk-col-xs-4 wk-col-md-4 wk-col-lg-4">
+                        <bci-wk-input-money 
+                            [placeholder]="data.monto_seleccionado"
+                            formControlName="monto_seleccionado"
+                            label="Monto seleccionado">
+                        </bci-wk-input-money >
+                    </div>
+
+                    <div class="wk-col-xs-12 wk-col-md-12 wk-col-lg-12">
+                        <bci-wk-alert
+                            class="wk-padding-bottom-24"
+                            bci-info
+                            [btnClose]="true">
+                            <strong>Información</strong> 
+                            <br>
+                            El grupo seleccionado se compone de los documentos listados a continuación.
+
+                        </bci-wk-alert>
+                        <bci-table>
+                            <bci-table-row-header>
+                                <bci-table-title>Número de documento</bci-table-title>
+                                <bci-table-title>Número relación</bci-table-title>
+                                <bci-table-title>Tipo documento</bci-table-title>
+                                <bci-table-title>Monto</bci-table-title>
+                            </bci-table-row-header>
+                        
+                            <bci-table-row *ngFor="let documento of tablaDocumentos" >
+                                <bci-table-col>{{documento.numero_documento}}</bci-table-col>
+                                <bci-table-col>{{documento.numero_relacion}}</bci-table-col>
+                                <bci-table-col>{{documento.tipo_documento}}</bci-table-col>
+                                <bci-table-col>{{documento.monto}}</bci-table-col>
+                            </bci-table-row>
+                        </bci-table>
+                    </div>
+
+                    
+                </div>
+
+            </div>
+        </div>
+        
+
+    </form>
+
+    
+
+    <bci-wk-modal-actions>
+      <button (click)="close()" bciWkButtonPrimary>Cerrar</button>
+    </bci-wk-modal-actions>
+</bci-wk-modal>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Confirmar } from '../../interfaces/portal.interface';
 
 @Component({
   selector: 'app-confirmacion',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmacionComponent implements OnInit {
 
-  constructor() { }
+  @Input() dataConfirmar: Confirmar[] =[];
+
+  constructor() {}
 
   ngOnInit(): void {
+    
   }
 
 }

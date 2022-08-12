@@ -1,1 +1,149 @@
-<p>anticipo works!</p>
+<div class="box-container">
+    <div class="box wk-padding-all-32">
+        <div class="wk-row">
+            <div class="wk-col-xs-12 wk-col-md-12 wk-col-lg-12">
+                <bci-card>
+                    <p bciWkTypeH1100 class="wk-padding-top-16 wk-padding-bottom-16">Financiamiento factoring</p>
+                    <bci-wk-alert
+                        class="wk-padding-bottom-24"
+                        bci-warning
+                        [btnClose]="true"
+                        (dismiss)="onDismiss($event)">
+                        <strong>Estimado Cliente</strong> 
+                        <br>
+                        Este servicio permite a los proveedores que operan a través de BCI realizar el financiamiento
+                        electrónico total de sus facturas. Solo seleccione las facturas a financiar y medio de pago requerido.
+                    </bci-wk-alert>
+        
+                    <bci-wk-stepper #miStepper (bciStepperItemsState)="getStepperStates($event)" class="wk-padding-top-16 wk-padding-bottom-16">
+        
+                        <bci-wk-stepper-item
+                            bcititle="Selección de anticipos"
+                            bcisubtitle=""
+                            initStatus="active"
+                            [modifySetAllStates]="['active', 'pending', 'pending', 'pending']"
+                            (isActive)="whenActive($event)">
+                    
+                            <bci-wk-stepper-item-content>
+
+                                <bci-table  title="Pagadores" 
+                                            [checkList]="true"
+                                            class="wk-padding-bottom-32">
+                                    <bci-table-row-header>
+                                      <bci-table-title *ngFor="let label of tableLabel ">{{label.title}}</bci-table-title>
+                                    </bci-table-row-header>
+                                
+                                    <bci-table-row [checked]="false" *ngFor="let item of tablaAnticipos" >
+                                      <bci-table-col><p class="link" (click)="openModal(item)">{{item.grupo}}</p></bci-table-col>
+                                      <bci-table-col>{{item.rut_pagador}}<br>{{item.pagador}}</bci-table-col>
+                                      <bci-table-col>{{item.fecha_pago_original}}</bci-table-col>
+                                      <bci-table-col>{{item.monto_original | currency}}</bci-table-col>
+                                      <bci-table-col>{{item.monto_utilizado | currency}}</bci-table-col>
+                                      <bci-table-col>{{item.saldo_disponible | currency}}</bci-table-col>
+                                      <bci-table-col>{{item.monto_seleccionado | currency}}</bci-table-col>
+                                    </bci-table-row>
+                                </bci-table>
+
+                                <div class="wk-row align-center" >
+                                    <div class="wk-col-xs-6 wk-col-md-6 wk-col-lg-6"><p>Grupos seleccionados:</p><br></div>
+                                    <div class="wk-col-xs-6 wk-col-md-6 wk-col-lg-6">Acumulado:</div>
+                                </div>
+
+                                  
+                                
+                                <button bciWkButtonPrimary 
+                                        (click)="miStepper.changeStep('editing', 2)"
+                                        >Anticipar</button>
+                            </bci-wk-stepper-item-content>
+                            
+                    
+                        </bci-wk-stepper-item>
+                    
+                        <bci-wk-stepper-item
+                            bcititle="Medio de Pago"
+                            initStatus="pending"
+                            [modifySetAllStates]="['editing', 'active', 'pending', 'pending']"
+                            (isActive)="whenActive($event)">
+                            <bci-wk-stepper-item-content>
+
+
+                                <app-medio-pago (dataConfirmacion)="getDataConfirmacion($event)"></app-medio-pago>
+
+                                <span  class="wk-margin-right-8">
+                                    <button bciWkButtonSecondary (click)="miStepper.changeStep('editing', 1)">Volver</button>
+                                </span>
+                                
+                                <button bciWkButtonPrimary (click)="miStepper.changeStep('editing', 3)" [disabled]="!isDisabled">Calcular</button>
+                            </bci-wk-stepper-item-content>
+                    
+                            <bci-wk-stepper-item-summary>
+                                <p>soy un resumen del paso 2 :D</p>
+                            </bci-wk-stepper-item-summary>
+                    
+                        </bci-wk-stepper-item>
+                    
+                        <bci-wk-stepper-item
+                            bcititle="Confirmación"
+                            initStatus="pending"
+                            [modifySetAllStates]="['editing', 'editing', 'active', 'pending']"
+                            (isActive)="whenActive($event)">
+                            <bci-wk-stepper-item-content>
+
+                                <app-confirmacion [dataConfirmar]="dataConfirm"></app-confirmacion>
+
+
+                                <span  class="wk-margin-right-8">
+                                    <button bciWkButtonSecondary (click)="miStepper.changeStep('editing', 2)">Rechazar</button>
+                                </span>
+                               
+                                <button bciWkButtonPrimary (click)="miStepper.changeStep('editing', 4)">Confirmar anticipo</button>
+                            </bci-wk-stepper-item-content>
+                        </bci-wk-stepper-item>
+                    
+                        <bci-wk-stepper-item
+                            bcititle="Comprobante"
+                            initStatus="pending"
+                            [modifySetAllStates]="['editing', 'editing', 'editing', 'active']"
+                            (isActive)="whenActive($event)">
+                            <bci-wk-stepper-item-content>
+
+                                <app-comprobante [dataConfirmar]="dataConfirm"></app-comprobante>
+
+                                <span  class="wk-margin-right-8">
+                                    <button bciWkButtonSecondary (click)="miStepper.changeStep('editing', 3)">anterior</button>
+                                </span>
+                                
+                                <button bciWkButtonPrimary (click)="miStepper.finishStepper()">Terminar</button>
+                            </bci-wk-stepper-item-content>
+                        </bci-wk-stepper-item>
+                    </bci-wk-stepper>
+                </bci-card>
+
+            </div>
+        </div>
+
+    </div>
+   
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

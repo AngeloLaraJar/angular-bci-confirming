@@ -1,0 +1,56 @@
+<p>Selecciona el medio de pago</p>
+<div class="box-container margin-pago">
+   
+    <div class="box wk-padding-all-56">
+        <bci-wk-list>
+            <form [formGroup]="radioForm">
+
+                <bci-wk-list>
+                    <bci-wk-list-item>
+                    
+                        <div bciWkListLeft class="radios-pago">
+                            <bci-wk-radio formControlName="radioTest" (change)="onRadio()" value="valeVista"></bci-wk-radio>
+                        </div>
+                        <div bciWkListLeft>
+                            <p bciWkTypeH300  style="font-weight: bold">Vale vista por oficina C/Liq</p>
+                            <p bciWkTypeH100>BCI-TBANK-NOVA</p>
+                        </div>
+                    </bci-wk-list-item>
+                
+                    <bci-wk-list-item>
+
+                        <div bciWkListLeft class="radios-pago">
+                            <bci-wk-radio formControlName="radioTest" (change)="onRadio()" value="ctaBci"></bci-wk-radio>
+                        </div>
+                     
+                        <div bciWkListLeft>
+                            <p bciWkTypeH300 style="font-weight: bold">Cuenta corriente BCI</p>
+                            <p bciWkTypeH100>BCI-TBANK-NOVA</p>
+                        </div>
+                
+                      
+                    </bci-wk-list-item>
+
+                    <bci-wk-list-item>
+
+                        <div bciWkListLeft class="radios-pago">
+                            <bci-wk-radio formControlName="radioTest" [label]="''" (change)="onRadio()" value="otro"></bci-wk-radio>
+                        </div>
+                     
+                        <div bciWkListLeft>
+                            <p bciWkTypeH300 style="font-weight: bold">Otro</p>
+                            <p bciWkTypeH100>Cuenta corriente de otros bancos</p>
+                        </div>
+                
+                      
+                    </bci-wk-list-item>
+            
+                  </bci-wk-list>
+            </form>
+        </bci-wk-list>
+    </div>
+</div>
+
+
+
+

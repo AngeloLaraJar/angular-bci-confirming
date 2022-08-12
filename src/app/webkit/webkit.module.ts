@@ -1,21 +1,38 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BciTableModule, BciWkAlertModule, BciWkButtonModule } from '@bci/webkitbci';
 
+import { NgModule } from '@angular/core';
+import {  BciTableModule, 
+          BciWkAlertModule, 
+          BciWkButtonModule, 
+          BciWkTypographyModule, 
+          BciWkStepperModule, 
+          BciCardModule,
+          BciWkInputTextModule,
+          BciFormMsgModule,
+          BciWkInputNumberModule,
+          BciWkInputMoneyModule,
+          BciWkListModule,
+          BciWkRadioModule,
+          BciSpinnerModule
+
+        } from '@bci/webkitbci';
 
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    BciWkAlertModule,
-    BciWkButtonModule,
-    BciTableModule
-  ],
   exports: [
     BciWkAlertModule,
     BciWkButtonModule,
-    BciTableModule
+    BciTableModule,
+    BciWkTypographyModule,
+    BciWkStepperModule,
+    BciCardModule,   
+    BciWkButtonModule,
+    BciWkInputTextModule,
+    BciFormMsgModule,
+    BciWkInputNumberModule,
+    BciWkInputMoneyModule,
+    BciWkListModule,
+    BciWkRadioModule,
+    BciSpinnerModule
   ]
 })
 export class WebkitModule { }
