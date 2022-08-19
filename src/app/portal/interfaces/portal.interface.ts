@@ -12,6 +12,7 @@ export interface TablaAnticipos {
     monto_utilizado: number;
     saldo_disponible: number;
     monto_seleccionado: number;
+    checked: boolean;
 
 }
 
@@ -26,6 +27,7 @@ export interface DetalleGrupo {
     saldo_disponible: any;
     monto_seleccionado: any;
     nomina?: string;
+  
 
 }
 

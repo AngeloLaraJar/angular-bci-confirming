@@ -33,7 +33,7 @@
                                       <bci-table-title *ngFor="let label of tableLabel ">{{label.title}}</bci-table-title>
                                     </bci-table-row-header>
                                 
-                                    <bci-table-row [checked]="false" *ngFor="let item of tablaAnticipos" >
+                                    <bci-table-row [checked]="item.checked" *ngFor="let item of tablaAnticipos" #table >
                                       <bci-table-col><p class="link" (click)="openModal(item)">{{item.grupo}}</p></bci-table-col>
                                       <bci-table-col>{{item.rut_pagador}}<br>{{item.pagador}}</bci-table-col>
                                       <bci-table-col>{{item.fecha_pago_original}}</bci-table-col>
@@ -52,7 +52,7 @@
                                   
                                 
                                 <button bciWkButtonPrimary 
-                                        (click)="miStepper.changeStep('editing', 2)"
+                                        (click)=" miStepper.changeStep('editing', 2)"
                                         >Anticipar</button>
                             </bci-wk-stepper-item-content>
                             
