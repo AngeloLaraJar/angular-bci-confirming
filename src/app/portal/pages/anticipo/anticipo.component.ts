@@ -1,7 +1,5 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { TablaAnticipos, TableLabel, DetalleGrupo, Confirmar } from '../../interfaces/portal.interface';
-import { BciWkModalService } from '@bci/webkitbci';
-import { ModalGrupoComponent } from '../../components/modal-grupo/modal-grupo.component';
+import { Component, OnInit } from '@angular/core';
+import { TablaAnticipos, TableLabel, Confirmar } from '../../interfaces/portal.interface';
 
 @Component({
   selector: 'app-anticipo',
@@ -12,7 +10,8 @@ export class AnticipoComponent implements OnInit {
 
 
   stepsStates = [];
-  isDisabled: boolean = false;
+  isDisabledMedioPago: boolean = false;
+  isDisabledAnticipo: boolean = false;
   medioPago: string = '';
   dataConfirm!: Confirmar[];
   tableLabel: TableLabel[] = [
@@ -59,7 +58,7 @@ export class AnticipoComponent implements OnInit {
     
   ]
 
-  constructor(private modal: BciWkModalService) { }
+  constructor() { }
 
   ngOnInit(): void {
 
@@ -74,6 +73,31 @@ export class AnticipoComponent implements OnInit {
     this.stepsStates = e.join(', ');
   }
 
+  stepperChangeIda(miStepper: any, type: string) {
+
+    switch (type) {
+      case 'anticipo':
+          miStepper.changeStep('editing', 2);
+          break;
+      case 'medioPago':
+          miStepper.changeStep('editing', 3);
+          break;
+      case 'confirmar':
+          miStepper.changeStep('editing', 4);
+          break;
+      case 'comprobante':
+          miStepper.finishStepper()
+          break;
+      default:
+          break;
+    }
+  }
+
+  rechazar() {
+    window.location.reload();
+  }
+
+
   whenActive(e: any) {
      
   }
@@ -83,19 +107,6 @@ export class AnticipoComponent implements OnInit {
   }
 
 
- 
-
-  openModal(item: DetalleGrupo) {
-    
-    const num = 15000000 + Math.floor(Math.random()* 15000000)
-    item.nomina = num.toString();
-  
-
-    this.modal.open(
-      ModalGrupoComponent,   // Componente modal
-      item // Objeto con la data
-    );
-  }
 
 
   getDataConfirmacion(data: Confirmar[]) {
@@ -104,13 +115,17 @@ export class AnticipoComponent implements OnInit {
       console.log("this.dataConfirm",this.dataConfirm)
       this.dataConfirm.forEach(d => {
         if (d.title === 'Medio de pago') {
-          this.isDisabled = true;
+          this.isDisabledMedioPago = true;
         }
       })
       
   
     }
     
+  }
+
+  getSelectedTable(value: boolean) {
+    this.isDisabledAnticipo = value;
   }
   
 

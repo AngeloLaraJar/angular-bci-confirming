@@ -1,0 +1,35 @@
+<form [formGroup]="radioTablePagadores">
+    <div class="table-container">
+        <table>
+           <thead>
+                <tr>
+                    <th class="align-center padding-17 cursor-text">Seleccione</th>
+                    <th class="cursor-text" *ngFor="let item of tableLabel">{{item.title}}</th>
+                </tr>
+           </thead>
+           <tbody>
+                <tr *ngFor="let item of dataTable">
+                    <td class="align-center">
+                        <bci-wk-radio formControlName="radioTable" (change)="onRadio(item)" [value]="item.pagador"></bci-wk-radio>
+                    </td>
+                    <td class="link" (click)="openModal(item)">{{item.grupo}}</td>
+                    <td>{{item.rut_pagador}}<br>{{item.pagador}}</td>
+                    <td>{{item.fecha_pago_original}}</td>
+                    <td>{{item.monto_original | currency}}</td>
+                    <td>{{item.monto_utilizado | currency}}</td>
+                    <td>{{item.saldo_disponible | currency}}</td>
+                    <td>{{item.monto_seleccionado | currency}}</td>
+                </tr>
+           </tbody>
+        </table>
+     </div>
+</form>
+
+<div class="wk-row align-center wk-margin-top-32" >
+    <div class="wk-col-xs-6 wk-col-md-6 wk-col-lg-6"><p>Grupos seleccionados: <span *ngIf="itemSeleccionado" style="font-weight:bold">1</span></p><br></div>
+    <div class="wk-col-xs-6 wk-col-md-6 wk-col-lg-6">Acumulado: <span style="font-weight:bold">{{itemSeleccionado?.monto_original | currency}}</span></div>
+</div>
+
+
+
+  

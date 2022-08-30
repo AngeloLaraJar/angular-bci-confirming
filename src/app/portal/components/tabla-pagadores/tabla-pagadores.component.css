@@ -1,0 +1,43 @@
+.table-container {
+    width: 100%;
+    overflow: hidden;
+    overflow-x: auto;
+    display: block;
+    position: static
+}
+
+th {
+    white-space: nowrap;
+    position: relative;
+    font-size: 14px;
+    color: #37474f;
+    font-weight: 600;
+    cursor: pointer;
+}
+tr {
+    border-bottom: 1px solid #e2e8ea;
+}
+
+td {
+    font-size: 14px !important;
+    font-family: Overpass,sans-serif;
+    color: #969696;
+}
+
+.padding-17 {
+    padding: 17px 0px;
+}
+
+
+.link {
+    color: #2772cc;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cursor-text {
+    cursor: text;
+}
+
+
+

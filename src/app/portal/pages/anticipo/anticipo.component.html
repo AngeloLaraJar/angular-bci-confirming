@@ -26,7 +26,7 @@
                     
                             <bci-wk-stepper-item-content>
 
-                                <bci-table  title="Pagadores" 
+                            <!-- <bci-table  title="Pagadores" 
                                             [checkList]="true"
                                             class="wk-padding-bottom-32">
                                     <bci-table-row-header>
@@ -34,7 +34,7 @@
                                     </bci-table-row-header>
                                 
                                     <bci-table-row [checked]="item.checked" *ngFor="let item of tablaAnticipos" #table >
-                                      <bci-table-col><p class="link" (click)="openModal(item)">{{item.grupo}}</p></bci-table-col>
+                                      <bci-table-col><p class="link">{{item.grupo}}</p></bci-table-col>
                                       <bci-table-col>{{item.rut_pagador}}<br>{{item.pagador}}</bci-table-col>
                                       <bci-table-col>{{item.fecha_pago_original}}</bci-table-col>
                                       <bci-table-col>{{item.monto_original | currency}}</bci-table-col>
@@ -42,17 +42,12 @@
                                       <bci-table-col>{{item.saldo_disponible | currency}}</bci-table-col>
                                       <bci-table-col>{{item.monto_seleccionado | currency}}</bci-table-col>
                                     </bci-table-row>
-                                </bci-table>
+                            </bci-table> -->
 
-                                <div class="wk-row align-center" >
-                                    <div class="wk-col-xs-6 wk-col-md-6 wk-col-lg-6"><p>Grupos seleccionados:</p><br></div>
-                                    <div class="wk-col-xs-6 wk-col-md-6 wk-col-lg-6">Acumulado:</div>
-                                </div>
-
-                                  
-                                
+                                <app-tabla-pagadores [dataTable]="tablaAnticipos"  (radioSelected)="getSelectedTable($event)"></app-tabla-pagadores>
+                  
                                 <button bciWkButtonPrimary 
-                                        (click)=" miStepper.changeStep('editing', 2)"
+                                        (click)="stepperChangeIda(miStepper, 'anticipo')" [disabled]="!isDisabledAnticipo"
                                         >Anticipar</button>
                             </bci-wk-stepper-item-content>
                             
@@ -73,11 +68,10 @@
                                     <button bciWkButtonSecondary (click)="miStepper.changeStep('editing', 1)">Volver</button>
                                 </span>
                                 
-                                <button bciWkButtonPrimary (click)="miStepper.changeStep('editing', 3)" [disabled]="!isDisabled">Calcular</button>
+                                <button bciWkButtonPrimary (click)="stepperChangeIda(miStepper, 'medioPago')" [disabled]="!isDisabledMedioPago">Calcular</button>
                             </bci-wk-stepper-item-content>
                     
                             <bci-wk-stepper-item-summary>
-                                <p>soy un resumen del paso 2 :D</p>
                             </bci-wk-stepper-item-summary>
                     
                         </bci-wk-stepper-item>
@@ -93,10 +87,10 @@
 
 
                                 <span  class="wk-margin-right-8">
-                                    <button bciWkButtonSecondary (click)="miStepper.changeStep('editing', 2)">Rechazar</button>
+                                    <button bciWkButtonSecondary (click)="rechazar()">Rechazar</button>
                                 </span>
                                
-                                <button bciWkButtonPrimary (click)="miStepper.changeStep('editing', 4)">Confirmar anticipo</button>
+                                <button bciWkButtonPrimary (click)="stepperChangeIda(miStepper, 'confirmar')">Confirmar anticipo</button>
                             </bci-wk-stepper-item-content>
                         </bci-wk-stepper-item>
                     
@@ -113,7 +107,7 @@
                                     <button bciWkButtonSecondary (click)="miStepper.changeStep('editing', 3)">anterior</button>
                                 </span>
                                 
-                                <button bciWkButtonPrimary (click)="miStepper.finishStepper()">Terminar</button>
+                                <button bciWkButtonPrimary (click)="stepperChangeIda(miStepper, 'comprobante')">Terminar</button>
                             </bci-wk-stepper-item-content>
                         </bci-wk-stepper-item>
                     </bci-wk-stepper>

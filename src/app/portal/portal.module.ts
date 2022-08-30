@@ -8,6 +8,7 @@ import { WebkitModule } from '../webkit/webkit.module';
 import { BciWkModalModule } from '@bci/webkitbci';
 import { ModalGrupoComponent } from './components/modal-grupo/modal-grupo.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TablaPagadoresComponent } from './components/tabla-pagadores/tabla-pagadores.component';
 
 
 
@@ -17,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MedioPagoComponent,
     ConfirmacionComponent,
     ComprobanteComponent,
-    ModalGrupoComponent
+    ModalGrupoComponent,
+    TablaPagadoresComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AnticipoComponent,
     ConfirmacionComponent,
     ComprobanteComponent,
-    MedioPagoComponent
+    MedioPagoComponent,
+    TablaPagadoresComponent
   ]
 })
 export class PortalModule { }
