@@ -2,123 +2,379 @@
     <div class="box wk-padding-all-32">
         <div class="wk-row">
             <div class="wk-col-xs-12 wk-col-md-12 wk-col-lg-12">
-                <bci-card>
-                    <p bciWkTypeH1100 class="wk-padding-top-16 wk-padding-bottom-16">Financiamiento factoring</p>
-                    <bci-wk-alert
-                        class="wk-padding-bottom-24"
-                        bci-warning
-                        [btnClose]="true"
-                        (dismiss)="onDismiss($event)">
-                        <strong>Estimado Cliente</strong> 
-                        <br>
-                        Este servicio permite a los proveedores que operan a través de BCI realizar el financiamiento
-                        electrónico total de sus facturas. Solo seleccione las facturas a financiar y medio de pago requerido.
-                    </bci-wk-alert>
-        
-                    <bci-wk-stepper #miStepper (bciStepperItemsState)="getStepperStates($event)" class="wk-padding-top-16 wk-padding-bottom-16">
-        
-                        <bci-wk-stepper-item
-                            bcititle="Selección de anticipos"
-                            bcisubtitle=""
-                            initStatus="active"
-                            [modifySetAllStates]="['active', 'pending', 'pending', 'pending']"
-                            (isActive)="whenActive($event)">
-                    
-                            <bci-wk-stepper-item-content>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th *ngFor="let label of tableLabel1" class="cursor-text" >{{label.title}}</th>
+                            </tr>
+                       </thead>
+                    </table>
+                    <div *ngIf="ingresadas.length > 0">
+                        <bci-accordion  >
+                            <bci-accordion-item >
+                            <bci-accordion-principal class="ingresadas header-acordion cursor-pointer">
+                                <bci-accordion-title>
+                                    <span class="text-table">Ingresadas({{ingresadas.length}})</span>
+                                </bci-accordion-title>
+                                <bci-accordion-title-description>
+                                    
+                                </bci-accordion-title-description>
+                            </bci-accordion-principal>
+                            <bci-accordion-content>
+                                <bci-accordion-body class="pad-0">
+                                    <div class="table-container">
+                                        <table>
+                                            
+                                           <tbody>
+                                                <tr *ngFor="let item of ingresadas" class="line-height-10">
+                                                    <td>{{item.rut_proveedor}}</td>
+                                                    <td>{{item.razon_social_proveedor}}</td>
+                                                    <td>{{item.banco_abono}}</td>
+                                                    <td>{{item.monto_pagar | currency}}</td>
+                                                    <td>{{item.cantidad_documentos}}</td>
+                                                    <td>{{item.fecha_ingreso}}</td>
+                                                    <td>{{item.hora_ingreso}}</td>
+                                                    <td>Firma LBTR</td>
+                                                    <td>Re-ceder</td>
+                                                </tr>
+                                               
+                                           </tbody>
+                                        </table>
+                                    </div>
+                                </bci-accordion-body>
+                            </bci-accordion-content>
+                            </bci-accordion-item>
+                        </bci-accordion>
+                    </div>
+    
+                    <div *ngIf="rechazadas.length > 0">
+                        <bci-accordion  >
+                            <bci-accordion-item >
+                            <bci-accordion-principal class="rechazadas header-acordion cursor-pointer">
+                                <bci-accordion-title>
+                                    <span class="text-table">Rechazadas({{rechazadas.length}})</span>
+                                </bci-accordion-title>
+                                <bci-accordion-title-description>
+                                    
+                                </bci-accordion-title-description>
+                            </bci-accordion-principal>
+                            <bci-accordion-content>
+                                <bci-accordion-body class="pad-0">
+                                    <div class="table-container">
+                                        <table>
+                                            
+                                           <tbody>
+                                               
+                                                <tr *ngFor="let item of rechazadas" class="line-height-10">
+                                                    <td>{{item.rut_proveedor}}</td>
+                                                    <td>{{item.razon_social_proveedor}}</td>
+                                                    <td>{{item.banco_abono}}</td>
+                                                    <td>{{item.monto_pagar | currency}}</td>
+                                                    <td>{{item.cantidad_documentos}}</td>
+                                                    <td>{{item.fecha_ingreso}}</td>
+                                                    <td>{{item.hora_ingreso}}</td>
+                                                    <td>Firma LBTR</td>
+                                                    <td>Re-ceder</td>
+                                                </tr>  
+                                          
+                                           </tbody>
+                                        </table>
+                                    </div>
+                                </bci-accordion-body>
+                            </bci-accordion-content>
+                            </bci-accordion-item>
+                        </bci-accordion>
+                    </div>
+    
+                    <div *ngIf="desembolsadas.length > 0">
+                        <bci-accordion  >
+                            <bci-accordion-item >
+                            <bci-accordion-principal class="desembolsadas header-acordion cursor-pointer">
+                                <bci-accordion-title>
+                                    <span class="text-table">Desembolsadas({{desembolsadas.length}})</span>
+                                </bci-accordion-title>
+                                <bci-accordion-title-description>
+                                    
+                                </bci-accordion-title-description>
+                            </bci-accordion-principal>
+                            <bci-accordion-content>
+                                <bci-accordion-body class="pad-0">
+                                    <div class="table-container">
+                                        <table>
+                                           
+                                           <tbody>
+                                               
+                                                <tr *ngFor="let item of desembolsadas" class="line-height-10">
+                                                    <td>{{item.rut_proveedor}}</td>
+                                                    <td>{{item.razon_social_proveedor}}</td>
+                                                    <td>{{item.banco_abono}}</td>
+                                                    <td>{{item.monto_pagar | currency}}</td>
+                                                    <td>{{item.cantidad_documentos}}</td>
+                                                    <td>{{item.fecha_ingreso}}</td>
+                                                    <td>{{item.hora_ingreso}}</td>
+                                                    <td>Firma LBTR</td>
+                                                    <td>Re-ceder</td>
+                                                </tr>  
+                                          
+                                           </tbody>
+                                        </table>
+                                    </div>
+                                </bci-accordion-body>
+                            </bci-accordion-content>
+                            </bci-accordion-item>
+                        </bci-accordion>
+                    </div>
+    
+                    <div *ngIf="reCedidas.length > 0">
+                        <bci-accordion  >
+                            <bci-accordion-item >
+                            <bci-accordion-principal class="re-cedidas header-acordion cursor-pointer">
+                                <bci-accordion-title>
+                                    <span class="text-table">Re cedidas({{reCedidas.length}})</span>
+                                </bci-accordion-title>
+                                <bci-accordion-title-description>
+                                    
+                                </bci-accordion-title-description>
+                            </bci-accordion-principal>
+                            <bci-accordion-content>
+                                <bci-accordion-body class="pad-0">
+                                    <div class="table-container">
+                                        <table>
+                                           
+                                           <tbody>
+                                               
+                                                <tr *ngFor="let item of reCedidas" class="line-height-10">
+                                                    <td>{{item.rut_proveedor}}</td>
+                                                    <td>{{item.razon_social_proveedor}}</td>
+                                                    <td>{{item.banco_abono}}</td>
+                                                    <td>{{item.monto_pagar | currency}}</td>
+                                                    <td>{{item.cantidad_documentos}}</td>
+                                                    <td>{{item.fecha_ingreso}}</td>
+                                                    <td>{{item.hora_ingreso}}</td>
+                                                    <td>Firma LBTR</td>
+                                                    <td>Re-ceder</td>
+                                                </tr>  
+                                          
+                                           </tbody>
+                                        </table>
+                                    </div>
+                                </bci-accordion-body>
+                            </bci-accordion-content>
+                            </bci-accordion-item>
+                        </bci-accordion>
+                    </div>
+    
+                    <div *ngIf="cerradas.length > 0">
+                        <bci-accordion  >
+                            <bci-accordion-item >
+                            <bci-accordion-principal class="cerradas header-acordion cursor-pointer">
+                                <bci-accordion-title>
+                                    <span class="text-table">Cerradas({{cerradas.length}})</span>
+                                </bci-accordion-title>
+                                <bci-accordion-title-description>
+                                    
+                                </bci-accordion-title-description>
+                            </bci-accordion-principal>
+                            <bci-accordion-content>
+                                <bci-accordion-body class="pad-0">
+                                    <div class="table-container">
+                                        <table>
+                                           
+                                           <tbody>
+                                               
+                                                <tr *ngFor="let item of cerradas" class="line-height-10">
+                                                    <td>{{item.rut_proveedor}}</td>
+                                                    <td>{{item.razon_social_proveedor}}</td>
+                                                    <td>{{item.banco_abono}}</td>
+                                                    <td>{{item.monto_pagar | currency}}</td>
+                                                    <td>{{item.cantidad_documentos}}</td>
+                                                    <td>{{item.fecha_ingreso}}</td>
+                                                    <td>{{item.hora_ingreso}}</td>
+                                                    <td>Firma LBTR</td>
+                                                    <td>Re-ceder</td>
+                                                </tr>  
+                                          
+                                           </tbody>
+                                        </table>
+                                    </div>
+                                </bci-accordion-body>
+                            </bci-accordion-content>
+                            </bci-accordion-item>
+                        </bci-accordion>
+                    </div>
+    
+                    <div *ngIf="abonadas.length > 0">
+                        <bci-accordion  >
+                            <bci-accordion-item >
+                            <bci-accordion-principal class="abonadas header-acordion cursor-pointer">
+                                <bci-accordion-title>
+                                    <span class="text-table">Abonadas({{abonadas.length}})</span>
+                                </bci-accordion-title>
+                                <bci-accordion-title-description>
+                                    
+                                </bci-accordion-title-description>
+                            </bci-accordion-principal>
+                            <bci-accordion-content>
+                                <bci-accordion-body class="pad-0">
+                                    <div class="table-container">
+                                        <table>
+                                        
+                                           <tbody>
+                                               
+                                                <tr *ngFor="let item of abonadas" class="line-height-10">
+                                                    <td>{{item.rut_proveedor}}</td>
+                                                    <td>{{item.razon_social_proveedor}}</td>
+                                                    <td>{{item.banco_abono}}</td>
+                                                    <td>{{item.monto_pagar | currency}}</td>
+                                                    <td>{{item.cantidad_documentos}}</td>
+                                                    <td>{{item.fecha_ingreso}}</td>
+                                                    <td>{{item.hora_ingreso}}</td>
+                                                    <td>Firma LBTR</td>
+                                                    <td>Re-ceder</td>
+                                                </tr>  
+                                          
+                                           </tbody>
+                                        </table>
+                                    </div>
+                                </bci-accordion-body>
+                            </bci-accordion-content>
+                            </bci-accordion-item>
+                        </bci-accordion>
+                    </div>
+                </div><br><br>
+                
 
-                            <!-- <bci-table  title="Pagadores" 
-                                            [checkList]="true"
-                                            class="wk-padding-bottom-32">
-                                    <bci-table-row-header>
-                                      <bci-table-title *ngFor="let label of tableLabel ">{{label.title}}</bci-table-title>
-                                    </bci-table-row-header>
-                                
-                                    <bci-table-row [checked]="item.checked" *ngFor="let item of tablaAnticipos" #table >
-                                      <bci-table-col><p class="link">{{item.grupo}}</p></bci-table-col>
-                                      <bci-table-col>{{item.rut_pagador}}<br>{{item.pagador}}</bci-table-col>
-                                      <bci-table-col>{{item.fecha_pago_original}}</bci-table-col>
-                                      <bci-table-col>{{item.monto_original | currency}}</bci-table-col>
-                                      <bci-table-col>{{item.monto_utilizado | currency}}</bci-table-col>
-                                      <bci-table-col>{{item.saldo_disponible | currency}}</bci-table-col>
-                                      <bci-table-col>{{item.monto_seleccionado | currency}}</bci-table-col>
-                                    </bci-table-row>
-                            </bci-table> -->
 
-                                <app-tabla-pagadores [dataTable]="tablaAnticipos"  (radioSelected)="getSelectedTable($event)"></app-tabla-pagadores>
-                  
-                                <button bciWkButtonPrimary 
-                                        (click)="stepperChangeIda(miStepper, 'anticipo')" [disabled]="!isDisabledAnticipo"
-                                        >Anticipar</button>
-                            </bci-wk-stepper-item-content>
+
+
+                <div class="wk-row">
+                    <div class=" wk-col-md-8 "></div>
+                    <div class=" wk-col-md-4 ">
+
+                        <div class="wk-row">
+                            <div class="wk-col-md-6 ">
+                                <bci-wk-input-text 
+                                    [placeholder]="'Buscar'"  
+                                    [label]="'Proveedor...'" 
+                                    name="filterProveedor" 
+                                    placeholder="Search..." 
+                                    [(ngModel)]="filterProveedor">
+                                </bci-wk-input-text>
+                            </div>
                             
+                            <div class="wk-col-md-6 ">
+                                <bci-wk-input-text 
+                                    [placeholder]="'Buscar'"  
+                                    [label]="'Inversionista...'" 
+                                    name="filterProveedor" 
+                                    placeholder="Search..." 
+                                    [(ngModel)]="filterProveedor">
+                                </bci-wk-input-text>
+                            </div>
+                        </div>
+
+                    </div>
                     
-                        </bci-wk-stepper-item>
+                </div>
+                <bci-table >
+
+                    <bci-table-row-header>
+                        <bci-table-title *ngFor="let label of tableLabel3" 
+                        [ngClass]="{
+                            'pad-0': label.title === 'N° de documentos',
+                            'align-center': label.title === 'Estado' || label.title === 'Rut Proveedor',
+                            'pad-left-10': label.title === 'Rut Proveedor'}">
+                            {{label.title}}
+                        </bci-table-title>
+                        
+                    </bci-table-row-header>
+                
+                    <bci-table-row *ngFor="let item of operaciones | filter:filterProveedor">
+                        <bci-table-col class="text-table align-center" [ngClass]="{
+                            'ingresadas': item.estado === 'ingresadas', 
+                            'rechazadas': item.estado === 'rechazadas',
+                            'abonadas': item.estado === 'abonadas',
+                            'cerradas': item.estado === 'cerradas',
+                            're-cedidas': item.estado === 're-cedidas',
+                            'desembolsadas': item.estado === 'desembolsadas'}">{{item.estado | titlecase}}
+                        </bci-table-col>
+                        
+                        <bci-table-col class="text-table align-center">{{item.rut_proveedor}}</bci-table-col>
+                        <bci-table-col class="text-table">{{item.razon_social_proveedor}}</bci-table-col>
+                        <bci-table-col class="text-table">{{item.banco_abono}}</bci-table-col>
+                        <bci-table-col class="text-table">{{item.monto_pagar | currency}}</bci-table-col>
+                        <bci-table-col class="text-table">{{item.cantidad_documentos}}</bci-table-col>
+                        <bci-table-col class="text-table">{{item.fecha_ingreso}}</bci-table-col>
+                        <bci-table-col class="text-table">{{item.hora_ingreso}}</bci-table-col>
+                        <bci-table-col class="text-table">
+                            <span *ngIf="item.estado === 'abonadas' else noAbonadas"><bci-wk-checkbox label="Firma LBTR"></bci-wk-checkbox></span>
+                            <ng-template #noAbonadas> - </ng-template>
+                        </bci-table-col>
+                        <bci-table-col class="text-table">
+                            <span *ngIf="item.estado === 'abonadas' else noAbonadas"><bci-wk-checkbox label="Re-ceder"></bci-wk-checkbox></span>
+                            <ng-template #noAbonadas> - </ng-template>
+                        </bci-table-col>
+                        
+                        
+                    </bci-table-row>
+                
                     
-                        <bci-wk-stepper-item
-                            bcititle="Medio de Pago"
-                            initStatus="pending"
-                            [modifySetAllStates]="['editing', 'active', 'pending', 'pending']"
-                            (isActive)="whenActive($event)">
-                            <bci-wk-stepper-item-content>
+                </bci-table><br><br>
 
 
-                                <app-medio-pago (dataConfirmacion)="getDataConfirmacion($event)"></app-medio-pago>
 
-                                <span  class="wk-margin-right-8">
-                                    <button bciWkButtonSecondary (click)="miStepper.changeStep('editing', 1)">Volver</button>
-                                </span>
-                                
-                                <button bciWkButtonPrimary (click)="stepperChangeIda(miStepper, 'medioPago')" [disabled]="!isDisabledMedioPago">Calcular</button>
-                            </bci-wk-stepper-item-content>
+
+                <bci-table title="3ra propuesta">
+                    <bci-table-row-header>
+                        <bci-table-title *ngFor="let label of tableLabel2" [ngClass]="{'pad-0': label.title === 'Cantidad de documentos'}">
+                            {{label.title}}
+                        </bci-table-title>
+                        
+                    </bci-table-row-header>
+                
+                    <bci-table-row *ngFor="let item of operaciones" 
+                        [ngClass]="{
+                            'ingresadas': item.estado === 'ingresadas', 
+                            'rechazadas': item.estado === 'rechazadas',
+                            'abonadas': item.estado === 'abonadas',
+                            'cerradas': item.estado === 'cerradas',
+                            're-cedidas': item.estado === 're-cedidas',
+                            'desembolsadas': item.estado === 'desembolsadas'}">
+                        <bci-table-col class="text-table">{{item.rut_proveedor}}</bci-table-col>
+                        <bci-table-col class="text-table">{{item.razon_social_proveedor}}</bci-table-col>
+                        <bci-table-col class="text-table">{{item.estado | titlecase}}</bci-table-col>
+                        <bci-table-col class="text-table">{{item.banco_abono}}</bci-table-col>
+                        <bci-table-col class="text-table">{{item.monto_pagar | currency}}</bci-table-col>
+                        <bci-table-col class="text-table">{{item.cantidad_documentos}}</bci-table-col>
+                        <bci-table-col class="text-table">{{item.fecha_ingreso}}</bci-table-col>
+                        <bci-table-col class="text-table">{{item.hora_ingreso}}</bci-table-col>
+                        <bci-table-col class="text-table">
+                            <span *ngIf="item.estado === 'abonadas' else noAbonadas"><bci-wk-checkbox label="Firma LBTR"></bci-wk-checkbox></span>
+                            <ng-template #noAbonadas> - </ng-template>
+                        </bci-table-col>
+                        <bci-table-col class="text-table">
+                            <span *ngIf="item.estado === 'abonadas' else noAbonadas"><bci-wk-checkbox label="Re-ceder"></bci-wk-checkbox></span>
+                            <ng-template #noAbonadas> - </ng-template>
+                        </bci-table-col>
+                    </bci-table-row>
+                
                     
-                            <bci-wk-stepper-item-summary>
-                            </bci-wk-stepper-item-summary>
-                    
-                        </bci-wk-stepper-item>
-                    
-                        <bci-wk-stepper-item
-                            bcititle="Confirmación"
-                            initStatus="pending"
-                            [modifySetAllStates]="['editing', 'editing', 'active', 'pending']"
-                            (isActive)="whenActive($event)">
-                            <bci-wk-stepper-item-content>
-
-                                <app-confirmacion [dataConfirmar]="dataConfirm"></app-confirmacion>
+                </bci-table>
 
 
-                                <span  class="wk-margin-right-8">
-                                    <button bciWkButtonSecondary (click)="rechazar()">Rechazar</button>
-                                </span>
-                               
-                                <button bciWkButtonPrimary (click)="stepperChangeIda(miStepper, 'confirmar')">Confirmar anticipo</button>
-                            </bci-wk-stepper-item-content>
-                        </bci-wk-stepper-item>
-                    
-                        <bci-wk-stepper-item
-                            bcititle="Comprobante"
-                            initStatus="pending"
-                            [modifySetAllStates]="['editing', 'editing', 'editing', 'active']"
-                            (isActive)="whenActive($event)">
-                            <bci-wk-stepper-item-content>
 
-                                <app-comprobante [dataConfirmar]="dataConfirm"></app-comprobante>
-
-                                <span  class="wk-margin-right-8">
-                                    <button bciWkButtonSecondary (click)="miStepper.changeStep('editing', 3)">anterior</button>
-                                </span>
-                                
-                                <button bciWkButtonPrimary (click)="stepperChangeIda(miStepper, 'comprobante')">Terminar</button>
-                            </bci-wk-stepper-item-content>
-                        </bci-wk-stepper-item>
-                    </bci-wk-stepper>
-                </bci-card>
-
+               
             </div>
         </div>
-
     </div>
    
 </div>
+
+
+
+
+
 
 
 

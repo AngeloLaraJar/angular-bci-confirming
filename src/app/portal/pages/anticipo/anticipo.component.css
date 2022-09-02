@@ -1,1 +1,111 @@
 
+.table-container {
+    width: 100%;
+    overflow: hidden;
+    overflow-x: auto;
+    display: block;
+    position: static
+}
+
+th {
+    white-space: nowrap;
+    position: relative;
+    font-size: 14px;
+    color: #37474f;
+    font-weight: 600;
+    cursor: pointer;
+}
+tr {
+    border-bottom: 1px solid #e2e8ea;
+}
+
+td {
+    font-size: 14px !important;
+    font-family: Overpass,sans-serif;
+    color: #969696;
+}
+
+.padding-17 {
+    padding: 17px 0px;
+}
+
+
+.link {
+    color: #2772cc;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cursor-text {
+    cursor: text;
+    
+}
+
+.accordion {
+    margin-top: 20px;
+}
+
+
+
+.span-titulo {
+    cursor: text;
+    white-space: nowrap;
+    font-size: 14px;
+    color: #37474f;
+    font-weight: 600;
+}
+
+.text-table {
+    color: #6b6b72;;
+}
+
+.pad-0 {
+    padding: 0px!important;
+}
+
+.pad-left-10 {
+    padding-left: 10px!important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.header-acordion {
+    line-height: 35px;
+    height: 35px;
+}
+
+.line-height-10 {
+    line-height: 10px!important
+}
+
+
+.ingresadas {
+    background-color: #fff9cc;
+}
+
+.rechazadas {
+    background-color: #fbced1;
+}
+
+.desembolsadas {
+    background-color: #a539f02b
+}
+
+.re-cedidas {
+    background-color: #ff880045;
+}
+
+.cerradas {
+    background-color: #d4e3f5;
+}
+
+.abonadas {
+    background-color: #d4e7d5;
+}
+
+
+
+
+

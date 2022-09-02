@@ -7,8 +7,9 @@ import { ComprobanteComponent } from './components/comprobante/comprobante.compo
 import { WebkitModule } from '../webkit/webkit.module';
 import { BciWkModalModule } from '@bci/webkitbci';
 import { ModalGrupoComponent } from './components/modal-grupo/modal-grupo.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TablaPagadoresComponent } from './components/tabla-pagadores/tabla-pagadores.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 
@@ -19,13 +20,15 @@ import { TablaPagadoresComponent } from './components/tabla-pagadores/tabla-paga
     ConfirmacionComponent,
     ComprobanteComponent,
     ModalGrupoComponent,
-    TablaPagadoresComponent
+    TablaPagadoresComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
     WebkitModule,
     BciWkModalModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     AnticipoComponent,

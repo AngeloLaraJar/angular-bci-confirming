@@ -14,7 +14,8 @@ import {  BciTableModule,
           BciWkRadioModule,
           BciSpinnerModule,
           BciWkTooltipModule,
-          BciWkCheckboxModule
+          BciWkCheckboxModule,
+          BciAccordionModule
 
         } from '@bci/webkitbci';
 
@@ -36,7 +37,8 @@ import {  BciTableModule,
     BciWkRadioModule,
     BciSpinnerModule,
     BciWkTooltipModule,
-    BciWkCheckboxModule
+    BciWkCheckboxModule,
+    BciAccordionModule
   ]
 })
 export class WebkitModule { }

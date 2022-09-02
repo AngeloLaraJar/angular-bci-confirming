@@ -127,6 +127,367 @@ export class AnticipoComponent implements OnInit {
   getSelectedTable(value: boolean) {
     this.isDisabledAnticipo = value;
   }
+
+
+
+  filterProveedor = '';
+
+  tableLabel1: TableLabel[] = [
+    {title: 'Rut Proveedor'},
+    {title: 'Razón social proveedor'},
+    {title: 'Banco abono'},
+    {title: 'Monto a pagar'},
+    {title: 'N° de documentos'},
+    {title: 'Fecha ingreso'},
+    {title: 'Hora ingreso'},
+    {title: 'Firma LBTR'},
+    {title: 'Re-ceder'},
+    
+    
+  ];
+
+  tableLabel2: TableLabel[] = [
+    {title: 'Rut Proveedor'},
+    {title: 'Razón social proveedor'},
+    {title: 'Estado'},
+    {title: 'Banco abono'},
+    {title: 'Monto a pagar'},
+    {title: 'Cantidad de documentos'},
+    {title: 'Fecha ingreso'},
+    {title: 'Hora ingreso'},
+    {title: 'Firma LBTR'},
+    {title: 'Re-ceder'}
+  ];
+
+  tableLabel3: TableLabel[] = [
+    {title: 'Estado'},
+    {title: 'Rut Proveedor'},
+    {title: 'Razón social proveedor'},
+    {title: 'Banco abono'},
+    {title: 'Monto a pagar'},
+    {title: 'N° de documentos'},
+    {title: 'Fecha ingreso'},
+    {title: 'Hora ingreso'},
+    {title: 'Firma LBTR'},
+    {title: 'Re-ceder'},
+    
+    
+  ];
+
+
+  ingresadas: any[] = [
+
+    { id: 9572377,
+      rut_proveedor:'78254124-1',
+      razon_social_proveedor:'Ingenieros exitosos',
+      banco_abono:'Bci',
+      monto_pagar:125000000,
+      cantidad_documentos:12,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'09:05:03',
+      estado: 'ingresadas'
+    },
+    { id: 957237324,
+      rut_proveedor:'96568780-2',
+      razon_social_proveedor:'Extracciones el solar',
+      banco_abono:'Banco itaú',
+      monto_pagar:1958000000,
+      cantidad_documentos:3,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'10:25:05',
+      estado: 'ingresadas'
+    },
+    { id: 76879377,
+      rut_proveedor:'73581654-2',
+      razon_social_proveedor:'Surcos el placer',
+      banco_abono:'Banco de chile',
+      monto_pagar:658321471,
+      cantidad_documentos:6,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'10:25:10',
+      estado: 'ingresadas'
+    },
+    { id: 7687912097,
+      rut_proveedor:'71475455-k',
+      razon_social_proveedor:'Maquinaria el pesar',
+      banco_abono:'Banco estado',
+      monto_pagar:2356581000,
+      cantidad_documentos:10,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'10:26:05',
+      estado: 'ingresadas'
+    }
+
+  ]
+
+  rechazadas: any[] = [
+
+
+      { id: 2342659,
+        rut_proveedor:'96568780-2',
+        razon_social_proveedor:'Ingeniería minera especializada',
+        banco_abono:'Banco de chile',
+        monto_pagar:250467897,
+        cantidad_documentos:10,
+        fecha_ingreso:'08/08/2022',
+        hora_ingreso:'09:15:03',
+        estado: 'rechazadas'
+      },
+      { id: 9498237324,
+        rut_proveedor:'76123456-k',
+        razon_social_proveedor:'Maquinaria celta',
+        banco_abono:'Banco santander',
+        monto_pagar:670000000,
+        cantidad_documentos:12,
+        fecha_ingreso:'08/08/2022',
+        hora_ingreso:'10:03:05',
+        estado: 'rechazadas'
+      },
+      { id: 7698377,
+        rut_proveedor:'77727456-3',
+        razon_social_proveedor:'Transportes helip',
+        banco_abono:'Banco scotiabank',
+        monto_pagar:52500000,
+        cantidad_documentos:5,
+        fecha_ingreso:'08/08/2022',
+        hora_ingreso:'10:15:10',
+        estado: 'rechazadas'
+      }
+
+    ]
+
+  desembolsadas: any[] = [
+
+    { id: 768452097,
+      rut_proveedor:'78254124-1',
+      razon_social_proveedor:'Ingenieros exitosos',
+      banco_abono:'Bci',
+      monto_pagar:125000000,
+      cantidad_documentos:12,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'09:05:05',
+      estado: 'desembolsadas'
+    },
+    { id: 52097,
+      rut_proveedor:'75782125-3',
+      razon_social_proveedor:'Extracciones el solar',
+      banco_abono:'Banco itaú',
+      monto_pagar:1958000000,
+      cantidad_documentos:3,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'10:24:05',
+      estado: 'desembolsadas'
+    }
+
+  ]
+
+  reCedidas: any[] = [
+
+    { id: 435878435,
+      rut_proveedor:'96568780-2',
+      razon_social_proveedor:'Ingeniería minera especializada',
+      banco_abono:'Banco de chile',
+      monto_pagar:250365880,
+      cantidad_documentos:10,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'09:15:05',
+      estado: 're-cedidas'
+    }
+
+  ]
+
+  cerradas: any[] =[
+
+    { id: 436778435,
+      rut_proveedor:'96568780-2',
+      razon_social_proveedor:'Ingeniería minera especializada',
+      banco_abono:'Banco de chile',
+      monto_pagar:250365880,
+      cantidad_documentos:10,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'09:15:05',
+      estado: 'cerradas'
+    },
+    { id: 949837324,
+      rut_proveedor:'76123456-k',
+      razon_social_proveedor:'Maquinaria celta',
+      banco_abono:'Banco santander',
+      monto_pagar:670000000,
+      cantidad_documentos:12,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'10:03:05',
+      estado: 'cerradas'
+    },
+    { id: 7690008377,
+      rut_proveedor:'77727456-3',
+      razon_social_proveedor:'Transportes helip',
+      banco_abono:'Banco scotiabank',
+      monto_pagar:52500000,
+      cantidad_documentos:5,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'10:15:10',
+      estado: 'cerradas'
+    }
+
+  ]
+  abonadas: any[] = [
+
+      { id: 2008377,
+        rut_proveedor:'68558874-2',
+        razon_social_proveedor:'Químicos la azulita',
+        banco_abono:'Bci',
+        monto_pagar:989000000,
+        cantidad_documentos:2,
+        fecha_ingreso:'08/08/2022',
+        hora_ingreso:'09:03:10',
+        estado: 'abonadas'
+      }
+
+  ]
+
+  operaciones: any[] = [
+    { id: 9572377,
+      rut_proveedor:'78254124-1',
+      razon_social_proveedor:'Ingenieros exitosos',
+      banco_abono:'Bci',
+      monto_pagar:125000000,
+      cantidad_documentos:12,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'09:05:03',
+      estado: 'ingresadas'
+    },
+    { id: 957237324,
+      rut_proveedor:'96568780-2',
+      razon_social_proveedor:'Extracciones el solar',
+      banco_abono:'Banco itaú',
+      monto_pagar:1958000000,
+      cantidad_documentos:3,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'10:25:05',
+      estado: 'ingresadas'
+    },
+    { id: 76879377,
+      rut_proveedor:'73581654-2',
+      razon_social_proveedor:'Surcos el placer',
+      banco_abono:'Banco de chile',
+      monto_pagar:658321471,
+      cantidad_documentos:6,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'10:25:10',
+      estado: 'ingresadas'
+    },
+    { id: 7687912097,
+      rut_proveedor:'71475455-k',
+      razon_social_proveedor:'Maquinaria el pesar',
+      banco_abono:'Banco estado',
+      monto_pagar:2356581000,
+      cantidad_documentos:10,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'10:26:05',
+      estado: 'ingresadas'
+    },
+    { id: 2342659,
+      rut_proveedor:'96568780-2',
+      razon_social_proveedor:'Ingeniería minera especializada',
+      banco_abono:'Banco de chile',
+      monto_pagar:250467897,
+      cantidad_documentos:10,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'09:15:03',
+      estado: 'rechazadas'
+    },
+    { id: 9498237324,
+      rut_proveedor:'76123456-k',
+      razon_social_proveedor:'Maquinaria celta',
+      banco_abono:'Banco santander',
+      monto_pagar:670000000,
+      cantidad_documentos:12,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'10:03:05',
+      estado: 'rechazadas'
+    },
+    { id: 7698377,
+      rut_proveedor:'77727456-3',
+      razon_social_proveedor:'Transportes helip',
+      banco_abono:'Banco scotiabank',
+      monto_pagar:52500000,
+      cantidad_documentos:5,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'10:15:10',
+      estado: 'ingresadas'
+    },
+    { id: 768452097,
+      rut_proveedor:'78254124-1',
+      razon_social_proveedor:'Ingenieros exitosos',
+      banco_abono:'Bci',
+      monto_pagar:125000000,
+      cantidad_documentos:12,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'09:05:05',
+      estado: 'desembolsadas'
+    },
+    { id: 52097,
+      rut_proveedor:'75782125-3',
+      razon_social_proveedor:'Extracciones el solar',
+      banco_abono:'Banco itaú',
+      monto_pagar:1958000000,
+      cantidad_documentos:3,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'10:24:05',
+      estado: 'desembolsadas'
+    },
+    { id: 435878435,
+      rut_proveedor:'96568780-2',
+      razon_social_proveedor:'Ingeniería minera especializada',
+      banco_abono:'Banco de chile',
+      monto_pagar:250365880,
+      cantidad_documentos:10,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'09:15:05',
+      estado: 're-cedidas'
+    },
+    { id: 436778435,
+      rut_proveedor:'96568780-2',
+      razon_social_proveedor:'Ingeniería minera especializada',
+      banco_abono:'Banco de chile',
+      monto_pagar:250365880,
+      cantidad_documentos:10,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'09:15:05',
+      estado: 'cerradas'
+    },
+    { id: 949837324,
+      rut_proveedor:'76123456-k',
+      razon_social_proveedor:'Maquinaria celta',
+      banco_abono:'Banco santander',
+      monto_pagar:670000000,
+      cantidad_documentos:12,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'10:03:05',
+      estado: 'cerradas'
+    },
+    { id: 7690008377,
+      rut_proveedor:'77727456-3',
+      razon_social_proveedor:'Transportes helip',
+      banco_abono:'Banco scotiabank',
+      monto_pagar:52500000,
+      cantidad_documentos:5,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'10:15:10',
+      estado: 'cerradas'
+    },
+    { id: 2008377,
+      rut_proveedor:'68558874-2',
+      razon_social_proveedor:'Químicos la azulita',
+      banco_abono:'Bci',
+      monto_pagar:989000000,
+      cantidad_documentos:2,
+      fecha_ingreso:'08/08/2022',
+      hora_ingreso:'09:03:10',
+      estado: 'abonadas'
+    },
+    
+  ]
   
 
 }
